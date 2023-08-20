@@ -29,11 +29,11 @@ def F_inv(xs, func, ymax = 1):
 
 
 
-def generate_ys(n, zmax=1):
+def generate_ys(n, func, zmax=1):
     '''Generates n random zs according to the function func
     in F_inv'''
     x = np.random.rand(n)
-    return F_inv(x, zmax=zmax)
+    return F_inv(x, func, zmax=zmax)
 
 
 if __name__ == "__main__":
