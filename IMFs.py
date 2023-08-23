@@ -20,7 +20,7 @@ of each to demonstrate agreement.'''
 def F_inv(xs, func, ymax = 1):
     #TODO: Fix docstring to be more accurate and descriptive
     '''Takes X~Unif(0,1) and returns y value in (0, ymax)
-    Inverse of the integral of the IMF, returns y (m, z, etc.)'''
+    Inverse of the integral of the IMF, returns y (m, z, etc.).'''
 
     y_range = np.linspace(0, ymax, 1001, endpoint=True) 
     ys = func(y_range)
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     smbh_IMFs = []
 
     # make 2-row fig that can hold all IMFs above (stars on top, smbh on bottom)
-    fig, axs = plt.subplots(nrows=2, ncols=max(len(star_IMFs), len(smbh_IMFs)))
+    # fig, axs = plt.subplots(nrows=2, ncols=max(len(star_IMFs), len(smbh_IMFs)))
 
     for i, func in enumerate(star_IMFs):
         pass
