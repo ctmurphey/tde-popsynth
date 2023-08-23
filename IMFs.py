@@ -4,7 +4,8 @@ from scipy import integrate
 
 '''Collection of the various IMF functions for stars and SMBHs as
 well as the necessary functions to generate the populations. Running
-this file alone will plot all IMFs and a random sampling of each.'''
+this file alone will plot all IMFs and a random sampling of each to
+demonstrate agreement.'''
 
 ### Stars
 
