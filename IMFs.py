@@ -9,10 +9,25 @@ of each to demonstrate agreement.'''
 
 ### Stars
 
+# saltpeter power law (0.1 to 100M_sun)
+def saltpeter(x):
+    # https://articles.adsabs.harvard.edu/pdf/1955ApJ...121..161S
+
+    return
+
+
+# chabrier
+def chabrier(x):
+    # https://iopscience.iop.org/article/10.1086/376392/pdf
+
+    return
 
 
 ### SMBH
 
+#find ones in Bricman
+
+#Ask Zach for favorite IMFs
 
 
 ### Synthesizing population
