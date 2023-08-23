@@ -39,8 +39,8 @@ def generate_ys(n, func, zmax=1):
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
-    star_IMFs = []
-    smbh_IMFs = []
+    star_IMFs = [] #put all IMFs for stars in here
+    smbh_IMFs = [] #same, but for SMBHs
 
     # make 2-row fig that can hold all IMFs above (stars on top, smbh on bottom)
     # fig, axs = plt.subplots(nrows=2, ncols=max(len(star_IMFs), len(smbh_IMFs)))
