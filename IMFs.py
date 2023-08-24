@@ -10,20 +10,31 @@ of each to demonstrate agreement.'''
 ### Stars
 
 # saltpeter power law (0.1 to 100M_sun)
-def saltpeter(x):
+def salpeter(m, alpha=2.35):
+    '''Standard Salpeter IMF'''
     # https://articles.adsabs.harvard.edu/pdf/1955ApJ...121..161S
 
+    return m**-alpha
+
+def kroupa(m, alpha_low=1.3, alpha_high=2.3):
+    '''Kroupa IMF: like a Salpeter IMF but scales differently for
+       m<0.5'''
+    # https://ui.adsabs.harvard.edu/abs/2001MNRAS.322..231K/abstract
     return
 
-
 # chabrier
-def chabrier(x):
+def chabrier(m, low=0.01, high=100):
     # https://iopscience.iop.org/article/10.1086/376392/pdf
 
     return
 
 
 ### SMBH
+
+def log_flat(m, low=6, high=8):
+    '''A flat IMF in log space, between 10^low and 10^high'''
+
+    return
 
 #find ones in Bricman
 
@@ -54,7 +65,7 @@ def generate_ys(n, func, zmax=1):
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
-    star_IMFs = [] #put all IMFs for stars in here
+    star_IMFs = [salpeter, chabrier] #put all IMFs for stars in here
     smbh_IMFs = [] #same, but for SMBHs
 
     # make 2-row fig that can hold all IMFs above (stars on top, smbh on bottom)
