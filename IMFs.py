@@ -10,7 +10,7 @@ of each to demonstrate agreement.'''
 ### Constants:
 stars_lower_bound = 0.1 #M_sun
 stars_upper_bound = 100
-smbh_lower_bound  = int(1e6)
+smbh_lower_bound  = int(1e5)
 smbh_upper_bound  = int(1e8)
 
 
@@ -38,13 +38,17 @@ def kroupa(m, alpha_low=1.3, alpha_high=2.3, cutoff=0.5):
 def log_flat(m):
     '''A flat IMF in log space'''
 
-    return 
+    return m
 
 #find ones in Bricman
 
 #Ask Zach for favorite IMFs
-def schecter(m):
-    '''Schecter IMF'''
+def aversa(m):
+    '''Schechter IMF'''
+    return
+
+def gallo(m):
+
     return
 
 ### Synthesizing population
@@ -73,7 +77,7 @@ def generate_ys(n, func, ymin, ymax):
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
     star_IMFs = [salpeter, kroupa] #put all IMFs for stars in here
-    smbh_IMFs = [log_flat, schecter] #same, but for SMBHs
+    smbh_IMFs = [log_flat] #same, but for SMBHs
 
     # make 2-row fig that can hold all IMFs above (stars on top, smbh on bottom)
     fig, axs = plt.subplots(nrows=2, ncols=max(len(star_IMFs), len(smbh_IMFs)))
@@ -91,7 +95,15 @@ if __name__ == "__main__":
         
 
     for i, func in enumerate(smbh_IMFs):
-        pass
+        ys = generate_ys(int(1e5), func, ymin=smbh_lower_bound, ymax=smbh_upper_bound)
+        ms = np.logspace(np.log10(smbh_lower_bound), np.log10(stars_upper_bound), 50)
+
+        # Histogram of samples for each IMF
+        axs[0, i].hist(ys, bins=ms, density=True)
+        # Actual pdf that should trace the histogram
+        axs[0, i].loglog(ms, func(ms)/(integrate.trapz(func(ms), ms)))
+
+        axs[0, i].set_title(str(func).split()[1])
 
 
 plt.show()
