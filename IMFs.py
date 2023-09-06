@@ -7,6 +7,14 @@ well as the necessary functions to generate the populations. Running
 this file alone will plot all IMFs and a normalized random sampling
 of each to demonstrate agreement.'''
 
+### Constants:
+stars_lower_bound = 0.1 #M_sun
+stars_upper_bound = 100
+smbh_lower_bound  = int(1e6)
+smbh_upper_bound  = int(1e8)
+
+
+
 ### Stars
 
 # saltpeter power law (0.1 to 100M_sun)
@@ -24,7 +32,7 @@ def kroupa(m, alpha_low=1.3, alpha_high=2.3, cutoff=0.5):
     return np.array([(x<cutoff)*x**-alpha_low + (x>=cutoff)*x**-alpha_high for x in m])
 
 # chabrier
-def chabrier(m, low=0.01, high=100):
+def chabrier(m):
     # https://iopscience.iop.org/article/10.1086/376392/pdf
 
     return
@@ -32,8 +40,8 @@ def chabrier(m, low=0.01, high=100):
 
 ### SMBH
 
-def log_flat(m, low=6, high=8):
-    '''A flat IMF in log space, between 10^low and 10^high'''
+def log_flat(m):
+    '''A flat IMF in log space'''
 
     return 
 
@@ -46,7 +54,7 @@ def schecter(m):
 
 ### Synthesizing population
 
-def F_inv(xs, func, ymin=0.01, ymax = 1):
+def F_inv(xs, func, ymin, ymax):
     #TODO: Fix docstring to be more accurate and descriptive
     '''Takes X~Unif(0,1) and returns y value in (0, ymax)
     Inverse of the integral of the IMF, returns y (m, z, etc.).'''
@@ -60,7 +68,7 @@ def F_inv(xs, func, ymin=0.01, ymax = 1):
 
 
 
-def generate_ys(n, func, ymin=0.1, ymax=100):
+def generate_ys(n, func, ymin, ymax):
     '''Generates n random zs according to the function func
     in F_inv'''
     x = np.random.rand(n)
@@ -76,11 +84,16 @@ if __name__ == "__main__":
     fig, axs = plt.subplots(nrows=2, ncols=max(len(star_IMFs), len(smbh_IMFs)))
 
     for i, func in enumerate(star_IMFs):
-        ys = generate_ys(int(1e5), func)
-        ms = np.linspace(0.1, 100, 1000)
-        axs[0, i].hist(ys, bins=np.logspace(np.log10(0.1),np.log10(100), 50), density=True)
+        ys = generate_ys(int(1e5), func, ymin=stars_lower_bound, ymax=stars_upper_bound)
+        ms = np.logspace(np.log10(stars_lower_bound), np.log10(stars_upper_bound), 50)
+
+        # Histogram of samples for each IMF
+        axs[0, i].hist(ys, bins=ms, density=True)
+        # Actual pdf that should trace the histogram
         axs[0, i].loglog(ms, func(ms)/(integrate.trapz(func(ms), ms)))
-        pass
+
+        axs[0, i].set_title(str(func).split()[1])
+        
 
     for i, func in enumerate(smbh_IMFs):
         pass
