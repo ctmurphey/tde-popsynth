@@ -31,11 +31,6 @@ def kroupa(m, alpha_low=1.3, alpha_high=2.3, cutoff=0.5):
     
     return np.array([(x<cutoff)*x**-alpha_low + (x>=cutoff)*x**-alpha_high for x in m])
 
-# chabrier
-def chabrier(m):
-    # https://iopscience.iop.org/article/10.1086/376392/pdf
-
-    return
 
 
 ### SMBH
