@@ -44,7 +44,7 @@ def log_flat(m):
 
 #Ask Zach for favorite IMFs
 def aversa(m):
-    '''Schechter IMF'''
+    '''Aversa IMF (D1 from Bricman2020)'''
     return
 
 def gallo(m):
