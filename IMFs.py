@@ -114,4 +114,4 @@ if __name__ == "__main__":
         axs[1, i].set_title(str(func).split()[1])
 
 
-plt.show()
+    plt.show()
