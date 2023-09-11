@@ -1,0 +1,13 @@
+name: tde-lsst
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3
+  - astropy
+  - mpi4py
+  - git+https://github.com/guillochon/MOSFiT.git
+  - numpy
+  - matplotlib
+  - scipy
+prefix: /home/tanner/anaconda3/envs/tde-lsst
